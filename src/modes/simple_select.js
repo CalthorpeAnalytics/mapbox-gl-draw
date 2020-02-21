@@ -139,7 +139,7 @@ SimpleSelect.clickOnVertex = function(state, e) {
   // Enter direct select mode
   this.changeMode(Constants.modes.DIRECT_SELECT, {
     featureId: e.featureTarget.properties.parent,
-    coordPath: e.featureTarget.properties.coord_path,
+    coordPath: [e.featureTarget.properties.coord_path],
     startPos: e.lngLat
   });
   this.updateUIClasses({ mouse: Constants.cursors.MOVE });
