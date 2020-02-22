@@ -2,6 +2,7 @@ const {MINIFY} = process.env;
 const minified = MINIFY === 'true';
 const outputFile = minified ? 'dist/mapbox-gl-draw.js' : 'dist/mapbox-gl-draw-unminified.js';
 
+import builtins from 'rollup-plugin-node-builtins';
 import replace from '@rollup/plugin-replace';
 import buble from '@rollup/plugin-buble';
 import {terser} from 'rollup-plugin-terser';
@@ -21,10 +22,11 @@ export default {
   external: [
     // geojsonlint-lines has a main function that requires the path and fs module.
     // We never call it.
-    'fs',
-    'path'
+    // 'fs',
+    // 'path'
   ],
   plugins: [
+    builtins(),
     replace({
       'process.env.NODE_ENV': "'browser'"
     }),
