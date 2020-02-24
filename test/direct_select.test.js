@@ -273,13 +273,13 @@ test('direct_select', (t) => {
     });
   });
 
-  t.test('direct_select - fire a selectionchange with the point provided in the coordPath', st => {
-    map.fire.reset();
+  t.test('direct_select - fire a selectionchange with the point provided in the coordPath', (st) => {
+    map.fire.resetHistory();
     const [lineId] = Draw.add(getGeoJSON('line'));
 
     Draw.changeMode(Constants.modes.DIRECT_SELECT, {
       featureId: lineId,
-      coordPath: '0'
+      coordPath: ['0']
     });
 
     afterNextRender(() => {
