@@ -48,7 +48,8 @@ function runTests() {
     // Click the line button
     pointButton.click();
     firedWith(t, 'draw.modechange', {
-      mode: 'draw_point'
+      mode: 'draw_point',
+      modeOptions: undefined
     });
     t.deepEqual(flushDrawEvents(), ['draw.modechange'], 'no unexpected draw events');
     t.end();
@@ -75,7 +76,8 @@ function runTests() {
       });
 
       firedWith(t, 'draw.modechange', {
-        mode: 'simple_select'
+        mode: 'simple_select',
+        modeOptions: { featureIds: Draw.getSelectedIds() }
       });
 
       firedWith(t, 'draw.selectionchange', {
@@ -174,7 +176,8 @@ function runTests() {
     // Click the line button
     lineCutton.click();
     firedWith(t, 'draw.modechange', {
-      mode: 'draw_line_string'
+      mode: 'draw_line_string',
+      modeOptions: undefined
     });
     t.deepEqual(flushDrawEvents(), [
       'draw.modechange'
@@ -213,7 +216,8 @@ function runTests() {
       });
 
       firedWith(t, 'draw.modechange', {
-        mode: 'simple_select'
+        mode: 'simple_select',
+        modeOptions: { featureIds: Draw.getSelectedIds() }
       });
 
       firedWith(t, 'draw.selectionchange', {
@@ -300,7 +304,12 @@ function runTests() {
     click(map, makeMouseEvent(40, 20));
     afterNextRender(() => {
       firedWith(t, 'draw.modechange', {
-        mode: 'direct_select'
+        mode: 'direct_select',
+        modeOptions: {
+          featureId: Draw.getSelectedIds()[0],
+          coordPath: ['1'],
+          startPos: { lng: 40, lat: 20 }
+        }
       });
 
       firedWith(t, 'draw.selectionchange', {
@@ -416,7 +425,8 @@ function runTests() {
 
     afterNextRender(() => {
       firedWith(t, 'draw.modechange', {
-        mode: 'draw_polygon'
+        mode: 'draw_polygon',
+        modeOptions: undefined
       });
 
       firedWith(t, 'draw.selectionchange', {
@@ -464,7 +474,8 @@ function runTests() {
       });
 
       firedWith(t, 'draw.modechange', {
-        mode: 'simple_select'
+        mode: 'simple_select',
+        modeOptions: { featureIds: Draw.getSelectedIds() }
       });
 
       firedWith(t, 'draw.selectionchange', {
@@ -594,7 +605,12 @@ function runTests() {
     click(map, makeMouseEvent(20, -20));
     afterNextRender(() => {
       firedWith(t, 'draw.modechange', {
-        mode: 'direct_select'
+        mode: 'direct_select',
+        modeOptions: {
+          featureId: Draw.getSelectedIds()[0],
+          coordPath: ['0.0'],
+          startPos: { lng: 20, lat: -20 }
+        }
       });
 
       firedWith(t, 'draw.selectionchange', {
@@ -814,7 +830,8 @@ function runTests() {
     container.dispatchEvent(enterEvent);
     afterNextRender(() => {
       firedWith(t, 'draw.modechange', {
-        mode: 'simple_select'
+        mode: 'simple_select',
+        modeOptions: {}
       });
       t.equal(Draw.getAll().features.length, 0, 'no feature created');
       t.deepEqual(flushDrawEvents(), [
@@ -830,7 +847,8 @@ function runTests() {
     container.dispatchEvent(escapeEvent);
     afterNextRender(() => {
       firedWith(t, 'draw.modechange', {
-        mode: 'simple_select'
+        mode: 'simple_select',
+        modeOptions: {}
       });
       t.equal(Draw.getAll().features.length, 0, 'no feature created');
       t.deepEqual(flushDrawEvents(), [
@@ -865,7 +883,8 @@ function runTests() {
       });
 
       firedWith(t, 'draw.modechange', {
-        mode: 'simple_select'
+        mode: 'simple_select',
+        modeOptions: { featureIds: Draw.getSelectedIds() }
       });
 
       t.deepEqual(flushDrawEvents(), [
@@ -885,7 +904,8 @@ function runTests() {
     container.dispatchEvent(escapeEvent);
     afterNextRender(() => {
       firedWith(t, 'draw.modechange', {
-        mode: 'simple_select'
+        mode: 'simple_select',
+        modeOptions: {}
       });
       t.equal(Draw.getAll().features.length, 0, 'no feature created');
       t.deepEqual(flushDrawEvents(), [
@@ -921,7 +941,8 @@ function runTests() {
       });
 
       firedWith(t, 'draw.modechange', {
-        mode: 'simple_select'
+        mode: 'simple_select',
+        modeOptions: { featureIds: Draw.getSelectedIds() }
       });
 
       t.deepEqual(flushDrawEvents(), [
@@ -942,7 +963,8 @@ function runTests() {
     container.dispatchEvent(escapeEvent);
     afterNextRender(() => {
       firedWith(t, 'draw.modechange', {
-        mode: 'simple_select'
+        mode: 'simple_select',
+        modeOptions: {}
       });
       t.equal(Draw.getAll().features.length, 0, 'no feature created');
       t.deepEqual(flushDrawEvents(), [

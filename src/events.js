@@ -177,7 +177,7 @@ export default function(ctx) {
     currentMode = setupModeHandler(mode, ctx);
 
     if (!eventOptions.silent) {
-      ctx.map.fire(Constants.events.MODE_CHANGE, { mode: modename});
+      ctx.map.fire(Constants.events.MODE_CHANGE, { mode: modename, modeOptions: nextModeOptions });
     }
 
     ctx.store.setDirty();
