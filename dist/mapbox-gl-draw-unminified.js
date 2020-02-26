@@ -8326,11 +8326,6 @@ function setupAPI(ctx, api) {
       return api;
     }
 
-    if (mode === modes.DIRECT_SELECT && api.getMode() === modes.DIRECT_SELECT &&
-      modeOptions.featureId === ctx.store.getSelectedIds()[0]) {
-      return api;
-    }
-
     ctx.events.changeMode(mode, modeOptions, { silent: true });
     return api;
   };

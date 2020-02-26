@@ -162,11 +162,6 @@ export default function(ctx, api) {
       return api;
     }
 
-    if (mode === Constants.modes.DIRECT_SELECT && api.getMode() === Constants.modes.DIRECT_SELECT &&
-      modeOptions.featureId === ctx.store.getSelectedIds()[0]) {
-      return api;
-    }
-
     ctx.events.changeMode(mode, modeOptions, { silent: true });
     return api;
   };
